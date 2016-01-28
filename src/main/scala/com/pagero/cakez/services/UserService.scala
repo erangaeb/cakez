@@ -1,8 +1,8 @@
 package com.pagero.cakez.services
 
-import scala.concurrent.Future
+import com.pagero.cakez.protocols.User
 
-case class User(id: Int, username: String)
+import scala.concurrent.Future
 
 /**
  * Created by eranga on 1/28/16.
