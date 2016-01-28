@@ -1,5 +1,6 @@
 package com.pagero.cakez.handlers
 
+import com.pagero.cakez.protocols.User
 import com.pagero.cakez.services.{UserDbComp, UserServiceComp}
 
 /**
@@ -18,17 +19,21 @@ class UserHandler {
         println("error")
     }
 
-    // save user in db
-    //userDb.createUser()
+    // get user via db
+    userDb.getUser(1)
 
     // logic + validation etc
 
   }
 
   def createUser() = {
-    // logic + validation etc
+    // save user in db
+    userDb.createUser(User(None, "erangaeb@gmail.com", Some(1), "eranga", "USER"))
 
     // create user via UserService
+
+
+    // logic + validation etc
 
   }
 

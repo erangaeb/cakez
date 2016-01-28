@@ -7,6 +7,16 @@ import com.pagero.cakez.services.{CassandraUserDbCompImpl, SprayUserServiceCompI
  * Created by eranga on 1/28/16.
  */
 object Main extends App {
-  val handler = new UserHandler with SprayUserServiceCompImpl with CassandraUserDbCompImpl
-  handler.getUser(1)
+
+  // default usage
+  trait DefaultConfig extends SprayUserServiceCompImpl with CassandraUserDbCompImpl
+
+  val defaultUserHandler = new UserHandler with DefaultConfig
+  defaultUserHandler.getUser(1)
+
+  // test usage
+  trait TestConfig extends SprayUserServiceCompImpl with CassandraUserDbCompImpl
+
+  val testUserHandler = new UserHandler with TestConfig
+  testUserHandler.getUser(1)
 }
