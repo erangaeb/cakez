@@ -1,7 +1,7 @@
 package com.pagero.cakez.services
 
 import akka.actor.Actor.Receive
-import akka.actor.{Actor, ActorSystem}
+import akka.actor.{Props, Actor, ActorSystem}
 import com.pagero.cakez.config.Configuration
 import com.pagero.cakez.protocols.User
 import spray.client.pipelining._
@@ -22,44 +22,29 @@ trait SprayUserServiceCompImpl extends UserServiceComp {
   class SprayUserService extends UserService {
     implicit val system = ActorSystem()
 
-    import system.dispatcher
-
     override def GET(id: Int): Option[User] = {
-      import com.pagero.cakez.protocols.UserProtocol._
-
-      val pipeline = sendReceive ~> unmarshal[User]
-
-      val response: Future[User] = pipeline {
-        Get(s"http://$apiHost:$apiPort/api/v1/users/$id/?format=json")
-      }
-
-      response onComplete {
-        case Success(user) =>
-          Some(user)
-        case Failure(e) =>
-          e.printStackTrace
-      }
+      val senzSender = system.actorOf(Props(classOf[SprayServiceActor]), name = "Service")
+      senzSender ! GetUser(id)
 
       None
     }
 
     override def POST(user: User) = {
-      import com.pagero.cakez.protocols.UserProtocol._
 
-      val pipeline = sendReceive
-
-      val response = pipeline {
-        Post(s"http://$apiHost:$apiPort/api/v1/users/", user)
-      }
     }
   }
 
 }
 
 class SprayServiceActor extends Actor with Configuration {
+
+  implicit val system = context.system
+
+  import system.dispatcher
+
   override def receive: Receive = {
     case GetUser(id) =>
-
+      getUser(id)
     case _ =>
 
   }
@@ -75,6 +60,7 @@ class SprayServiceActor extends Actor with Configuration {
 
     response onComplete {
       case Success(user) =>
+        println(user.email)
         Some(user)
       case Failure(e) =>
         e.printStackTrace
