@@ -2,8 +2,8 @@ package com.pagero.cakez.actors
 
 import akka.actor.Actor
 import com.pagero.cakez.db.CakezCassandraCluster
-import com.pagero.cakez.handlers.UserHandler
-import com.pagero.cakez.services.{CassandraUserDbCompImpl, SprayUserServiceCompImpl}
+import com.pagero.cakez.handlers.EmployeeHandler
+import com.pagero.cakez.services.{CassandraEmployeeDbCompImpl, SprayUserServiceCompImpl}
 
 case class InitReader()
 
@@ -17,9 +17,9 @@ class EmpReader extends Actor {
   }
 
   // employee handler dependencies
-  trait EmployeeHandlerConfig extends SprayUserServiceCompImpl with CassandraUserDbCompImpl with CakezCassandraCluster
+  trait EmployeeHandlerConfig extends SprayUserServiceCompImpl with CassandraEmployeeDbCompImpl with CakezCassandraCluster
 
-  val employeeHandler = new UserHandler with EmployeeHandlerConfig
+  val employeeHandler = new EmployeeHandler with EmployeeHandlerConfig
 
   override def receive: Receive = {
     case InitReader => {
@@ -29,11 +29,11 @@ class EmpReader extends Actor {
         println("#Employee(id, name, department)")
         println("--------------------------------------------")
 
-        val inputEmployee = scala.io.StdIn.readLine()
+        val inputEmp = scala.io.StdIn.readLine()
 
-        if (!inputEmployee.isEmpty) {
+        if (!inputEmp.isEmpty) {
           // handle employee via Employee handler
-          employeeHandler.createUser()
+          employeeHandler.createEmployee(inputEmp)
         }
       }
     }
