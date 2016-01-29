@@ -22,8 +22,8 @@ class EmployeeHandler {
 
     // validate input content
     if (tokens.length != 3) {
-      logger.error(s"Invalid input: ${inputEmp}, employee should contains (id, name, department)")
-      throw InvalidEmployeeInput("Invalid input, employee should contains (id, name, department)")
+      logger.error(s"Invalid input: ${inputEmp}, employee should contains [id name department]")
+      throw InvalidEmployeeInput("Invalid input, employee should contains [id name department]")
     }
 
     // validate emp_id
@@ -37,8 +37,10 @@ class EmployeeHandler {
     // create employee via db
     employeeDb.createEmployee(employee)
 
+    // create User from employee
     // POST employee to server
-    userService.POST(User(None, "serviceuser@gmail.com", Some(1), "service user", "USER"))
+    val user = User(None, "test@gmail.com", Some(employee.empId), employee.name, employee.department)
+    userService.POST(user)
 
     employee
   }

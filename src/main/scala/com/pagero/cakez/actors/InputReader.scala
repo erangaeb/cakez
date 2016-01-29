@@ -32,7 +32,7 @@ class InputReader extends Actor {
         println()
         println()
         println("--------------------------------------------")
-        println("ENTER #Employee(id, name, department)")
+        println("ENTER #Employee[id name department]")
         println("--------------------------------------------")
         println()
 
