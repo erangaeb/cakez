@@ -18,6 +18,6 @@ trait Configuration {
   lazy val apiPort = Try(config.getInt("api.port")).getOrElse(8080)
 
   // cassandra config
-  lazy val cassandradbHost = Try(config.getString("db.cassandra.host")).getOrElse("localhost")
-  lazy val cassandradbKeyspace = Try(config.getString("db.cassandra.keyspace")).getOrElse("cakez")
+  lazy val cassandraHost = Try(config.getString("db.cassandra.host")).getOrElse("localhost")
+  lazy val cassandraKeyspace = Try(config.getString("db.cassandra.keyspace")).getOrElse("cakez")
 }

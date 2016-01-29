@@ -9,9 +9,9 @@ import com.pagero.cakez.config.Configuration
 trait CakezCassandraCluster extends Configuration {
   lazy val cluster: Cluster = {
     Cluster.builder().
-      addContactPoint(cassandradbHost).
+      addContactPoint(cassandraHost).
       build()
   }
 
-  lazy val session: Session = cluster.connect(cassandradbKeyspace)
+  lazy val session: Session = cluster.connect(cassandraKeyspace)
 }
