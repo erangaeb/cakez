@@ -2,7 +2,9 @@ package com.pagero.cakez.actors
 
 import akka.actor.Actor
 import com.pagero.cakez.db.CakezCassandraCluster
+import com.pagero.cakez.exceptions.{InvalidEmployeeInput, InvalidEmployeeId}
 import com.pagero.cakez.handlers.EmployeeHandler
+import com.pagero.cakez.protocols.Employee
 import com.pagero.cakez.services.{CassandraEmployeeDbCompImpl, SprayUserServiceCompImpl}
 
 case class InitReader()
@@ -10,7 +12,7 @@ case class InitReader()
 /**
  * Created by eranga on 1/9/16.
  */
-class EmpReader extends Actor {
+class InputReader extends Actor {
 
   override def preStart = {
     println("----started----- " + context.self.path)
@@ -30,12 +32,25 @@ class EmpReader extends Actor {
         println("--------------------------------------------")
 
         val inputEmp = scala.io.StdIn.readLine()
-
-        if (!inputEmp.isEmpty) {
-          // handle employee via Employee handler
-          employeeHandler.createEmployee(inputEmp)
-        }
+        handleInput(inputEmp)
       }
+    }
+  }
+
+  def handleInput(inputEmp: String) = {
+    // handle employee via Employee handler
+    try {
+      employeeHandler.createEmployee(inputEmp) match {
+        case Employee(id, name, _) =>
+          println("Employee created with name " + name)
+        case _ =>
+          println("Employee creation failed")
+      }
+    } catch {
+      case e: InvalidEmployeeInput =>
+        println(e.msg)
+      case e: InvalidEmployeeId =>
+        println(e.msg)
     }
   }
 }

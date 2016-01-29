@@ -4,6 +4,8 @@ import com.pagero.cakez.exceptions.{InvalidEmployeeId, InvalidEmployeeInput}
 import com.pagero.cakez.protocols.Employee
 import com.pagero.cakez.services.EmployeeDbComp
 
+import scala.util.Try
+
 /**
  * Created by eranga on 1/28/16.
  */
@@ -11,26 +13,24 @@ class EmployeeHandler {
 
   this: EmployeeDbComp =>
 
-  def createEmployee(inputEmp: String): Boolean = {
+  def createEmployee(inputEmp: String): Employee = {
     // empDetails comes as emp_id, name, department
-    // split input and create employee
     val tokens = inputEmp.split(" ")
 
     // validate input content
-    if (tokens.length != 3) throw InvalidEmployeeInput("Employee should contains (id, name, department)")
+    if (tokens.length != 3) throw InvalidEmployeeInput("Invalid input. Employee should contains (id, name, department)")
 
     // validate emp_id
-    if (!tokens(0).matches("[+-]?\\d+.?\\d+")) throw InvalidEmployeeId("Invalid employee ID " + tokens(0))
+    if (!Try(tokens(0).toInt).isSuccess) throw InvalidEmployeeId("Invalid employee ID " + tokens(0))
 
     val employee = Employee(tokens(0).toInt, tokens(1), tokens(2))
 
     // create employee via db
     employeeDb.createEmployee(employee)
 
-    // upload employee to server
-    
+    // TODO upload employee to server
 
-    true
+    employee
   }
 
   def findEmployee(empId: Int): Employee = {

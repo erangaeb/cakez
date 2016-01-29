@@ -19,9 +19,9 @@ trait SprayUserServiceCompImpl extends UserServiceComp with Configuration {
   val userService = new SprayUserService
 
   class SprayUserService extends UserService {
-    implicit val system = ActorSystem()
+    //implicit val system = ActorSystem()
 
-    import system.dispatcher
+    //import system.dispatcher
 
     override def GET(id: Int): Option[User] = {
       import com.pagero.cakez.protocols.UserProtocol._
