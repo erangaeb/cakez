@@ -2,7 +2,7 @@
 
 ## Application functionality
 
-Application deals with Employee(emp_id, name, department) objects. Following are the main functions
+Application deals with `Employee(emp_id: Int, name: String, department: String)` objects. Following are the main functions
 
 ##### 1. Read employees
 
@@ -10,7 +10,7 @@ Enter employees via commandline. `InputReader` actor handles this function
 
 ##### 2. Handler input employees
 
-EmployeeHandler handles the rest of the functionality
+`EmployeeHandler` handles the rest of the functionality
 
 ## Cake pattern dependencies
 
