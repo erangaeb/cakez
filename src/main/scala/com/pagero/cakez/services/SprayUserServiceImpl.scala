@@ -25,7 +25,7 @@ trait SprayUserServiceCompImpl extends UserServiceComp with Configuration {
 
       val pipeline = sendReceive
       val response = pipeline {
-        Post("http://10.4.1.29:9000/api/v1/users/", user)
+        Post(s"http://$apiHost:$apiPort/api/v1/users/", user)
       }
 
       response.map(_.entity.asInstanceOf[Unit])
@@ -37,7 +37,7 @@ trait SprayUserServiceCompImpl extends UserServiceComp with Configuration {
 
       val pipeline = sendReceive ~> unmarshal[User]
       val response: Future[User] = pipeline {
-        Get(s"http://10.2.1.29:9000/api/v1/users/$id/?format=json")
+        Get(s"http://$apiHost:$apiPort/api/v1/users/$id/?format=jso")
       }
 
       response

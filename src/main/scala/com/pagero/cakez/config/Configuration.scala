@@ -15,7 +15,7 @@ trait Configuration {
 
   // api config
   lazy val apiHost = Try(config.getString("api.host")).getOrElse("localhost")
-  lazy val apiPort = Try(config.getInt("api.port")).getOrElse(8080)
+  lazy val apiPort = Try(config.getInt("api.port")).getOrElse(8000)
 
   // cassandra config
   lazy val cassandraHost = Try(config.getString("db.cassandra.host")).getOrElse("localhost")
