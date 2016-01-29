@@ -17,7 +17,9 @@ libraryDependencies ++= {
     "io.spray"                %% "spray-routing"            % sprayVersion,
     "io.spray"                %% "spray-client"             % sprayVersion,
     "io.spray"                %% "spray-json"               % sprayVersion,
-    "com.datastax.cassandra"  % "cassandra-driver-core"     % cassandraVersion
+    "com.datastax.cassandra"  % "cassandra-driver-core"     % cassandraVersion,
+    "org.slf4j"               % "slf4j-api"                 % "1.7.5",
+    "ch.qos.logback"          % "logback-classic"           % "1.0.9"
   )
 }
 

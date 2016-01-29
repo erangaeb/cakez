@@ -6,6 +6,7 @@ import com.pagero.cakez.exceptions.{InvalidEmployeeId, InvalidEmployeeInput}
 import com.pagero.cakez.handlers.EmployeeHandler
 import com.pagero.cakez.protocols.Employee
 import com.pagero.cakez.services.{CassandraEmployeeDbCompImpl, SprayUserServiceCompImpl}
+import org.slf4j.LoggerFactory
 
 case class InitReader()
 
@@ -14,8 +15,10 @@ case class InitReader()
  */
 class InputReader extends Actor {
 
+  def logger = LoggerFactory.getLogger(this.getClass)
+
   override def preStart = {
-    println("----started----- " + context.self.path)
+    logger.debug(s"Starting Actor ${context.self.path}")
   }
 
   // employee handler dependencies
@@ -25,13 +28,15 @@ class InputReader extends Actor {
 
   override def receive: Receive = {
     case InitReader => {
-      // listen for user inputs via commandline
       while (true) {
         println("\n--------------------------------------------")
         println("#Employee(id, name, department)")
         println("--------------------------------------------")
 
         val inputEmp = scala.io.StdIn.readLine()
+
+        logger.debug(s"Read input employee ${inputEmp}")
+
         handleInput(inputEmp)
       }
     }
