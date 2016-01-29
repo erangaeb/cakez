@@ -27,7 +27,7 @@ class InputReader extends Actor {
     case InitReader => {
       // listen for user inputs via commandline
       while (true) {
-        println("--------------------------------------------")
+        println("\n--------------------------------------------")
         println("#Employee(id, name, department)")
         println("--------------------------------------------")
 
@@ -51,6 +51,8 @@ class InputReader extends Actor {
         println(e.msg)
       case e: InvalidEmployeeId =>
         println(e.msg)
+      case e: Throwable =>
+        println(e.getStackTrace)
     }
   }
 }

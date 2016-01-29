@@ -10,9 +10,9 @@ trait UserServiceComp {
   val userService: UserService
 
   trait UserService {
-    def GET(id: Int): Option[User]
-
     def POST(user: User)
+
+    def GET(id: Int): Option[User]
   }
 
 }

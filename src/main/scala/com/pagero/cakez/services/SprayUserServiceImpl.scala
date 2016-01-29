@@ -22,6 +22,15 @@ trait SprayUserServiceCompImpl extends UserServiceComp with Configuration {
     //implicit val system = ActorSystem()
 
     //import system.dispatcher
+    override def POST(user: User) = {
+      import com.pagero.cakez.protocols.UserProtocol._
+
+      //      val pipeline = sendReceive
+      //
+      //      val response = pipeline {
+      //        Post(s"http://$apiHost:$apiPort/api/v1/users/", user)
+      //      }
+    }
 
     override def GET(id: Int): Option[User] = {
       import com.pagero.cakez.protocols.UserProtocol._
@@ -38,16 +47,6 @@ trait SprayUserServiceCompImpl extends UserServiceComp with Configuration {
       //      )
 
       Some(User(None, "serviceuser@gmail.com", Some(1), "service user", "USER"))
-    }
-
-    override def POST(user: User) = {
-      import com.pagero.cakez.protocols.UserProtocol._
-
-      //      val pipeline = sendReceive
-      //
-      //      val response = pipeline {
-      //        Post(s"http://$apiHost:$apiPort/api/v1/users/", user)
-      //      }
     }
   }
 

@@ -7,14 +7,14 @@ import com.pagero.cakez.services.EmployeeDbComp
 import scala.util.Try
 
 /**
- * Created by eranga on 1/28/16.
+ * Created by eranga on 1/28/16
  */
 class EmployeeHandler {
 
   this: EmployeeDbComp =>
 
   def createEmployee(inputEmp: String): Employee = {
-    // empDetails comes as emp_id, name, department
+    // inputEmp comes as 'emp_id name department'
     val tokens = inputEmp.split(" ")
 
     // validate input content

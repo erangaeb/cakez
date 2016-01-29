@@ -11,9 +11,9 @@ trait EmployeeDbComp {
   val employeeDb: EmployeeDb
 
   trait EmployeeDb {
-    def getEmployee(empId: Int): Employee
-
     def createEmployee(employee: Employee)
+
+    def getEmployee(empId: Int): Employee
   }
 
 }

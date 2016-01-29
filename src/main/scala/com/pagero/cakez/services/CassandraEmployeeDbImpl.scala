@@ -15,6 +15,17 @@ trait CassandraEmployeeDbCompImpl extends EmployeeDbComp {
   val employeeDb = new CassandraEmployeeDb
 
   class CassandraEmployeeDb extends EmployeeDb {
+    override def createEmployee(employee: Employee) = {
+      val statement = QueryBuilder.insertInto("employee")
+        .value("emp_id", employee.empId)
+        .value("name", employee.name)
+        .value("department", employee.department)
+
+      session.execute(statement)
+
+      //session.execute(s"INSERT INTO employee (emp_id, name, department) VALUES (${employee.empId}, '${employee.name}', '${employee.department}');")
+    }
+
     override def getEmployee(empId: Int): Employee = {
       val selectStmt = select().all()
         .from("employee")
@@ -25,10 +36,6 @@ trait CassandraEmployeeDbCompImpl extends EmployeeDbComp {
       val row = resultSet.one()
 
       Employee(row.getInt("emp_id"), row.getString("name"), row.getString("department"))
-    }
-
-    override def createEmployee(employee: Employee) = {
-      session.execute(s"INSERT INTO employee (emp_id, name, department) VALUES (${employee.empId}, '${employee.name}', '${employee.department}');")
     }
   }
 
