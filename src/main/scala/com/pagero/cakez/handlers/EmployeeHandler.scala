@@ -1,8 +1,8 @@
 package com.pagero.cakez.handlers
 
 import com.pagero.cakez.exceptions.{InvalidEmployeeId, InvalidEmployeeInput}
-import com.pagero.cakez.protocols.Employee
-import com.pagero.cakez.services.EmployeeDbComp
+import com.pagero.cakez.protocols.{User, Employee}
+import com.pagero.cakez.services.{UserServiceComp, EmployeeDbComp}
 
 import scala.util.Try
 
@@ -11,7 +11,7 @@ import scala.util.Try
  */
 class EmployeeHandler {
 
-  this: EmployeeDbComp =>
+  this: EmployeeDbComp with UserServiceComp =>
 
   def createEmployee(inputEmp: String): Employee = {
     // inputEmp comes as 'emp_id name department'
@@ -29,6 +29,7 @@ class EmployeeHandler {
     employeeDb.createEmployee(employee)
 
     // TODO upload employee to server
+    userService.POST(User(None, "serviceuser@gmail.com", Some(1), "service user", "USER"))
 
     employee
   }

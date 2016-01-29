@@ -22,8 +22,6 @@ trait CassandraEmployeeDbCompImpl extends EmployeeDbComp {
         .value("department", employee.department)
 
       session.execute(statement)
-
-      //session.execute(s"INSERT INTO employee (emp_id, name, department) VALUES (${employee.empId}, '${employee.name}', '${employee.department}');")
     }
 
     override def getEmployee(empId: Int): Employee = {

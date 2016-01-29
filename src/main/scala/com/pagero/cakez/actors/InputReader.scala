@@ -2,7 +2,7 @@ package com.pagero.cakez.actors
 
 import akka.actor.Actor
 import com.pagero.cakez.db.CakezCassandraCluster
-import com.pagero.cakez.exceptions.{InvalidEmployeeInput, InvalidEmployeeId}
+import com.pagero.cakez.exceptions.{InvalidEmployeeId, InvalidEmployeeInput}
 import com.pagero.cakez.handlers.EmployeeHandler
 import com.pagero.cakez.protocols.Employee
 import com.pagero.cakez.services.{CassandraEmployeeDbCompImpl, SprayUserServiceCompImpl}
@@ -19,7 +19,7 @@ class InputReader extends Actor {
   }
 
   // employee handler dependencies
-  trait EmployeeHandlerConfig extends SprayUserServiceCompImpl with CassandraEmployeeDbCompImpl with CakezCassandraCluster
+  trait EmployeeHandlerConfig extends SprayUserServiceCompImpl with CakezActorSystem with CassandraEmployeeDbCompImpl with CakezCassandraCluster
 
   val employeeHandler = new EmployeeHandler with EmployeeHandlerConfig
 
