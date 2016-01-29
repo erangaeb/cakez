@@ -1,6 +1,6 @@
 package com.pagero.cakez.services
 
-import com.pagero.cakez.db.CassandraCluster
+import com.pagero.cakez.db.CakezCassandraCluster
 import com.pagero.cakez.protocols.User
 
 import com.datastax.driver.core.querybuilder.QueryBuilder
@@ -11,7 +11,7 @@ import com.datastax.driver.core.querybuilder.QueryBuilder._
  */
 trait CassandraUserDbCompImpl extends UserDbComp {
 
-  this: CassandraCluster =>
+  this: CakezCassandraCluster =>
 
   val userDb = new CassandraUserDb
 

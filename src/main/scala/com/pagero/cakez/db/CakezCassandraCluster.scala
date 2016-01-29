@@ -6,7 +6,7 @@ import com.pagero.cakez.config.Configuration
 /**
  * Created by eranga on 1/19/16.
  */
-trait CassandraCluster extends Configuration {
+trait CakezCassandraCluster extends Configuration {
   lazy val cluster: Cluster = {
     Cluster.builder().
       addContactPoint("127.0.0.1").

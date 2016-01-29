@@ -1,7 +1,7 @@
 package com.pagero.cakez.actors
 
 import akka.actor.Actor
-import com.pagero.cakez.db.CassandraCluster
+import com.pagero.cakez.db.CakezCassandraCluster
 import com.pagero.cakez.handlers.UserHandler
 import com.pagero.cakez.services.{CassandraUserDbCompImpl, SprayUserServiceCompImpl}
 
@@ -17,7 +17,7 @@ class EmpReader extends Actor {
   }
 
   // employee handler dependencies
-  trait EmployeeHandlerConfig extends SprayUserServiceCompImpl with CassandraUserDbCompImpl with CassandraCluster
+  trait EmployeeHandlerConfig extends SprayUserServiceCompImpl with CassandraUserDbCompImpl with CakezCassandraCluster
 
   val employeeHandler = new UserHandler with EmployeeHandlerConfig
 
