@@ -26,28 +26,28 @@ trait SprayUserServiceCompImpl extends UserServiceComp with Configuration {
     override def GET(id: Int): Option[User] = {
       import com.pagero.cakez.protocols.UserProtocol._
 
-      val r = pipeline(Get(s"http://$apiHost:$apiPort/api/v1/users/$id/?format=json"))
+      //      val r = pipeline(Get(s"http://$apiHost:$apiPort/api/v1/users/$id/?format=json"))
+      //
+      //      val pipeline: HttpRequest => Future[User] = (
+      //        sendReceive
+      //          ~> unmarshal[User]
+      //        )
+      //
+      //      pipeline (
+      //        Get(s"http://$apiHost:$apiPort/api/v1/users/$id/?format=json")
+      //      )
 
-      val pipeline: HttpRequest => Future[User] = (
-        sendReceive
-          ~> unmarshal[User]
-        )
-
-      pipeline (
-        Get(s"http://$apiHost:$apiPort/api/v1/users/$id/?format=json")
-      )
-
-      None
+      Some(User(None, "serviceuser@gmail.com", Some(1), "service user", "USER"))
     }
 
     override def POST(user: User) = {
       import com.pagero.cakez.protocols.UserProtocol._
 
-      val pipeline = sendReceive
-
-      val response = pipeline {
-        Post(s"http://$apiHost:$apiPort/api/v1/users/", user)
-      }
+      //      val pipeline = sendReceive
+      //
+      //      val response = pipeline {
+      //        Post(s"http://$apiHost:$apiPort/api/v1/users/", user)
+      //      }
     }
   }
 

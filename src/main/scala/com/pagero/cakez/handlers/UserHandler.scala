@@ -14,13 +14,13 @@ class UserHandler {
     // get user via UserService
     userService.GET(id) match {
       case Some(user) =>
-        println(user)
+        println(user.email)
       case _ =>
         println("error")
     }
 
     // get user via db
-    userDb.getUser(1)
+    println(userDb.getUser(1).email)
 
     // logic + validation etc
 
