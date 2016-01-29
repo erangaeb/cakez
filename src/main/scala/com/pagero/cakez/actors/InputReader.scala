@@ -29,9 +29,12 @@ class InputReader extends Actor {
   override def receive: Receive = {
     case InitReader => {
       while (true) {
-        println("\n--------------------------------------------")
-        println("#Employee(id, name, department)")
+        println()
+        println()
         println("--------------------------------------------")
+        println("ENTER #Employee(id, name, department)")
+        println("--------------------------------------------")
+        println()
 
         val inputEmp = scala.io.StdIn.readLine()
 
@@ -47,16 +50,19 @@ class InputReader extends Actor {
     try {
       employeeHandler.createEmployee(inputEmp) match {
         case Employee(id, name, _) =>
-          println("Employee created with name " + name)
+          println("[DONE] employee created with name " + name)
         case _ =>
-          println("Employee creation failed")
+          println("[FAIL] employee creation failed")
       }
     } catch {
       case e: InvalidEmployeeInput =>
-        println(e.msg)
+        logger.error("error ", e)
+        println(s"[FAIL] ${e.msg}")
       case e: InvalidEmployeeId =>
-        println(e.msg)
+        logger.error("error ", e)
+        println(s"[FAIL] ${e.msg}")
       case e: Throwable =>
+        logger.error("error ", e)
         println(e.getStackTrace)
     }
   }

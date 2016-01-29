@@ -23,7 +23,7 @@ class EmployeeHandler {
     // validate input content
     if (tokens.length != 3) {
       logger.error(s"Invalid input: ${inputEmp}, employee should contains (id, name, department)")
-      throw InvalidEmployeeInput("Invalid input. Employee should contains (id, name, department)")
+      throw InvalidEmployeeInput("Invalid input, employee should contains (id, name, department)")
     }
 
     // validate emp_id
