@@ -24,7 +24,7 @@ class InputReader extends Actor {
     logger.debug(s"Starting Actor ${context.self.path}")
   }
 
-  // employee handler dependencies
+  // employee handler dependencies via trait mixing
   trait EmployeeHandlerConfig extends SprayUserServiceCompImpl with CakezActorSystem with CassandraEmployeeDbCompImpl with CakezCassandraCluster
 
   val employeeHandler = new EmployeeHandler with EmployeeHandlerConfig
@@ -39,6 +39,7 @@ class InputReader extends Actor {
         println("--------------------------------------------")
         println()
 
+        // read command line input
         val inputEmp = scala.io.StdIn.readLine()
 
         logger.debug(s"Read input employee ${inputEmp}")
