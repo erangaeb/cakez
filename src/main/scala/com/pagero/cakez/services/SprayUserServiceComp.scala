@@ -14,7 +14,7 @@ import scala.concurrent.Future
  *
  * @author eranga bandara(erangaeb@gmail.com)
  */
-trait SprayUserServiceCompImpl extends UserServiceComp with Configuration {
+trait SprayUserServiceComp extends UserServiceComp with Configuration {
 
   // passing actor system with self typed annotation
   this: CakezActorSystem =>

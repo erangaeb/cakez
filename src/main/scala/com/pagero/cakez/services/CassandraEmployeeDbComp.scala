@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory
  *
  * @author eranga bandara(erangaeb@gmail.com)
  */
-trait CassandraEmployeeDbCompImpl extends EmployeeDbComp {
+trait CassandraEmployeeDbComp extends EmployeeDbComp {
 
   // We are passing Cassandra configuration via self typed annotation
   this: CakezCassandraCluster =>

@@ -5,7 +5,7 @@ import com.pagero.cakez.db.CakezCassandraCluster
 import com.pagero.cakez.exceptions.{InvalidEmployeeId, InvalidEmployeeInput}
 import com.pagero.cakez.handlers.EmployeeHandler
 import com.pagero.cakez.protocols.Employee
-import com.pagero.cakez.services.{CassandraEmployeeDbCompImpl, SprayUserServiceCompImpl}
+import com.pagero.cakez.services.{CassandraEmployeeDbComp, SprayUserServiceComp}
 import org.slf4j.LoggerFactory
 
 case class InitReader()
@@ -25,7 +25,7 @@ class InputReader extends Actor {
   }
 
   // employee handler dependencies via trait mixing
-  trait EmployeeHandlerConfig extends SprayUserServiceCompImpl with CakezActorSystem with CassandraEmployeeDbCompImpl with CakezCassandraCluster
+  trait EmployeeHandlerConfig extends SprayUserServiceComp with CakezActorSystem with CassandraEmployeeDbComp with CakezCassandraCluster
 
   val employeeHandler = new EmployeeHandler with EmployeeHandlerConfig
 
