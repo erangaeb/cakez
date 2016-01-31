@@ -11,7 +11,10 @@ import org.slf4j.LoggerFactory
 case class InitReader()
 
 /**
- * Created by eranga on 1/9/16.
+ * Actor class which handles reading inputs form the commandline
+ * Starts to work on 'InitReader' message
+ *
+ * @author eranga bandara(erangaeb@gmail.com)
  */
 class InputReader extends Actor {
 
@@ -45,6 +48,11 @@ class InputReader extends Actor {
     }
   }
 
+  /**
+   * Handle input message from here
+   * Actual handler logic delegates to EmployeeHandler
+   * @param inputEmp input string
+   */
   def handleInput(inputEmp: String) = {
     // handle employee via Employee handler
     try {

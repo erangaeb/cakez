@@ -8,14 +8,29 @@ import org.slf4j.LoggerFactory
 import scala.util.Try
 
 /**
- * Created by eranga on 1/28/16
+ * Handle user entering employee details from here,
+ * We do
+ *    1. Create employee
+ *    2. Find employees
+ *
+ * @author eranga bandara(erangaeb@gmail.com)
  */
 class EmployeeHandler {
 
+  // dependencies via self typed annotation
   this: EmployeeDbComp with UserServiceComp =>
 
   def logger = LoggerFactory.getLogger(this.getClass)
 
+  /**
+   * Handles employee creation functionality with use of EmployeeDbComp and UserServiceComp
+   * We mainly do
+   *    1. Validate input
+   *    2. Create employee in the database
+   *    3. Upload employee to the colud service
+   * @param inputEmp user input
+   * @return created employee
+   */
   def createEmployee(inputEmp: String): Employee = {
     // inputEmp comes as 'emp_id name department'
     val tokens = inputEmp.split(" ")
@@ -45,6 +60,11 @@ class EmployeeHandler {
     employee
   }
 
+  /**
+   * Handles employee find with the use of EmployeeDbComp and UserServiceComp
+   * @param empId employee ID
+   * @return employee
+   */
   def findEmployee(empId: Int): Employee = {
     // validate empId
     if (empId == 0)

@@ -4,7 +4,10 @@ import com.datastax.driver.core.{Cluster, Session}
 import com.pagero.cakez.config.Configuration
 
 /**
- * Created by eranga on 1/19/16.
+ * Cassandra database related configuration, we wrapped them with
+ * trait in order to have self typed annotated dependencies
+ *
+ * @author eranga bandara(erangaeb@gmail.com)
  */
 trait CakezCassandraCluster extends Configuration {
   lazy val cluster: Cluster = {

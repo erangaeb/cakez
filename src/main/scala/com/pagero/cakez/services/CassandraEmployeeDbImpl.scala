@@ -7,21 +7,35 @@ import com.pagero.cakez.protocols.Employee
 import org.slf4j.LoggerFactory
 
 /**
- * Created by eranga on 1/28/16.
+ * Apache cassandra based EmployeeDbComp implementation
+ *
+ * @author eranga bandara(erangaeb@gmail.com)
  */
 trait CassandraEmployeeDbCompImpl extends EmployeeDbComp {
 
+  // We are passing Cassandra configuration via self typed annotation
   this: CakezCassandraCluster =>
 
   val employeeDb = new CassandraEmployeeDb
 
+  /**
+   * Apache cassandra based EmployeeDb implementation
+   * Actual employee retrieve, insert functions implemented in here
+   * @author eranga bandara(erangaeb@gmail.com)
+   */
   class CassandraEmployeeDb extends EmployeeDb {
 
     def logger = LoggerFactory.getLogger(this.getClass)
 
+    /**
+     * Cassandra based database insert happens in here
+     * Database session comes via CassandraEmployeeDb
+     * @param employee employee
+     */
     override def createEmployee(employee: Employee) = {
       logger.debug(s"Create employee with id: ${employee.empId} name: ${employee.name}")
 
+      // insert query
       val statement = QueryBuilder.insertInto("employee")
         .value("emp_id", employee.empId)
         .value("name", employee.name)
@@ -30,9 +44,16 @@ trait CassandraEmployeeDbCompImpl extends EmployeeDbComp {
       session.execute(statement)
     }
 
+    /**
+     * Cassandra based select happens in here
+     * Database session comes via CassandraEmployeeDb
+     * @param empId Find employee which is matching to given employee ID
+     * @return employee
+     */
     override def getEmployee(empId: Int): Employee = {
       logger.debug(s"get employee with ID: ${empId}")
 
+      // select query
       val selectStmt = select().all()
         .from("employee")
         .where(QueryBuilder.eq("emp_id", empId))

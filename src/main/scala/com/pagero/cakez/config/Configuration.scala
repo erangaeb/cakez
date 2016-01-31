@@ -7,7 +7,7 @@ import scala.util.Try
 /**
  * Load configurations define in application.conf from here
  *
- * @author eranga herath(erangaeb@gmail.com)
+ * @author eranga bandara(erangaeb@gmail.com)
  */
 trait Configuration {
   // config object
