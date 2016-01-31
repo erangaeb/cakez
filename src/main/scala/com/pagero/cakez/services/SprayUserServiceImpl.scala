@@ -31,6 +31,7 @@ trait SprayUserServiceCompImpl extends UserServiceComp with Configuration {
 
     /**
      * Send HTTP POST request to user API exists in the cloud
+     * Actor system comes via CakezActorSystem
      * @param user User object
      * @return future
      */
@@ -51,6 +52,7 @@ trait SprayUserServiceCompImpl extends UserServiceComp with Configuration {
 
     /**
      * Send HTTP GET request to user API in the cloud
+     * Actor system comes via CakezActorSystem
      * @param id user ID
      * @return future
      */
