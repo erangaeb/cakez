@@ -1,4 +1,4 @@
-package com.pagero.cakez.services
+package com.pagero.cakez.components
 
 import com.pagero.cakez.actors.CakezActorSystem
 import com.pagero.cakez.config.Configuration

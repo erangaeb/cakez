@@ -5,7 +5,7 @@ import com.pagero.cakez.db.CakezCassandraCluster
 import com.pagero.cakez.exceptions.{InvalidEmployeeId, InvalidEmployeeInput}
 import com.pagero.cakez.handlers.EmployeeHandler
 import com.pagero.cakez.protocols.Employee
-import com.pagero.cakez.services.{CassandraEmployeeDbComp, SprayUserServiceComp}
+import com.pagero.cakez.components.{CassandraEmployeeDbComp, SprayUserServiceComp}
 import org.slf4j.LoggerFactory
 
 case class InitReader()

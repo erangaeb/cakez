@@ -1,4 +1,4 @@
-package com.pagero.cakez.services
+package com.pagero.cakez.components
 
 import com.datastax.driver.core.querybuilder.QueryBuilder
 import com.datastax.driver.core.querybuilder.QueryBuilder._

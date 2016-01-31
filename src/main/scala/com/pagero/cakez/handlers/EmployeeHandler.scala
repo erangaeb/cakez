@@ -2,7 +2,7 @@ package com.pagero.cakez.handlers
 
 import com.pagero.cakez.exceptions.{InvalidEmployeeId, InvalidEmployeeInput}
 import com.pagero.cakez.protocols.{User, Employee}
-import com.pagero.cakez.services.{UserServiceComp, EmployeeDbComp}
+import com.pagero.cakez.components.{UserServiceComp, EmployeeDbComp}
 import org.slf4j.LoggerFactory
 
 import scala.util.Try
